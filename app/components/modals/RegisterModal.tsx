@@ -12,6 +12,7 @@ import Modal from './Modal';
 import Heading from '../Heading';
 import Input from '../inputs/Input';
 import toast from 'react-hot-toast';
+import Button from '../Button';
 
 
 const RegisterModal = () => {
@@ -48,6 +49,24 @@ const RegisterModal = () => {
       })
   }
 
+  const footerContent = (
+    <div className='flex flex-col gap-4 mt-3'>
+      <hr />
+      <Button outline label="Continue with Google" icon={FcGoogle} onClick={() => { }} />
+      <Button outline label="Continue with GitHub" icon={AiFillGithub} onClick={() => { }} />
+      <div className='text-neutral-500 text-center mt-4 font-light'>
+        <div className='justify-center flex flex-row items-center gap-2'>
+          <div>
+            Already Have an Account?
+          </div>
+          <div onClick={registerModal.onClose} className='text-neutral-800 cursor-pointer hover:underline'>
+            Log in
+          </div>
+        </div>
+      </div>
+    </div>
+  )
+
   const bodyContent = (
     <form className='flex flex-col gap-4'>
       <Heading title='Welcome to Airbnb' subtitle='Create an account!' />
@@ -58,7 +77,7 @@ const RegisterModal = () => {
   )
 
   return (
-    <Modal body={bodyContent}
+    <Modal body={bodyContent} footer={footerContent}
       disabled={isLoading} isOpen={registerModal.isOpen} title="Register" actionLabel='Continue'
       onClose={registerModal.onClose} onSubmit={handleSubmit(onSubmit)} />
 
