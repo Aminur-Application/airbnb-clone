@@ -32,34 +32,36 @@ const Thumbnail: React.FC<ThumbnailProps> = ({ images, row, onRemoval, onClick, 
 
   return (
     <>
-      <div className={`flex w-auto flex-nowrap gap-2 ${row ? "flex-row" : "flex-col"} overflow-y-auto`}>
-        {images.map((url) => (
-          <div key={url} className={`flex flex-shrink-0 relative w-[100px] h-[100px] rounded-md`}>
-            <div className="z-10 absolute top-2 right-2">
-              <button type="button" onClick={() => handleRemoval(url)} className='p-2 bg-rose-500 hover:opacity-100 opacity-70 rounded-full text-white'>
-                <BiTrash size={18} />
-              </button>
+      <div className={`flex gap-2  ${row ? "flex-col" : "flex-row"}`}>
+        <div className={`flex flex-nowrap overflow-auto ${row ? "flex-row h-[100px]": "flex-col w-[120px] h-[400px]"}`}>
+          {images.map((url) => (
+            <div key={url} className={`flex flex-shrink-0 relative w-[100px] h-[100px] rounded-md`}>
+              <div className="z-10 absolute top-2 right-2">
+                <button type="button" onClick={() => handleRemoval(url)} className='p-2 bg-rose-500 hover:opacity-100 opacity-70 rounded-full text-white'>
+                  <BiTrash size={18} />
+                </button>
+              </div>
+              <Image
+                fill
+                className={`object-cover border-2 hover:opacity-100 ${value === url ? 'opacity-100 border-rose-500' : 'opacity-80'}`}
+                alt="Image"
+                src={url}
+                onClick={() => onClick(url)}
+              />
             </div>
+          ))}
+        </div>
+        {bigPicture && (
+          <div className={`flex h-[400px] flex-auto relative rounded-md`}>
             <Image
               fill
-              className={`object-cover border-2 hover:opacity-100 ${value === url ? 'opacity-100 border-rose-500' : 'opacity-80'}`}
+              className="object-cover border-2 hover:opacity-100"
               alt="Image"
-              src={url}
-              onClick={() => onClick(url)}
+              src={value}
             />
           </div>
-        ))}
+        )}
       </div>
-      {bigPicture && (
-        <div className={`flex w-auto h-[400px] relative rounded-md`}>
-          <Image
-            fill
-            className="object-cover border-2 hover:opacity-100"
-            alt="Image"
-            src={value}
-          />
-        </div>
-      )}
 
     </>
   )
