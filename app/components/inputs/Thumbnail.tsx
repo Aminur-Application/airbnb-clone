@@ -33,7 +33,7 @@ const Thumbnail: React.FC<ThumbnailProps> = ({ images, row, onRemoval, onClick, 
   return (
     <>
       <div className={`flex gap-2  ${row ? "flex-col" : "flex-row"}`}>
-        <div className={`flex flex-nowrap overflow-auto ${row ? "flex-row h-[100px]": "flex-col w-[120px] h-[400px]"}`}>
+        <div className={`flex flex-nowrap overflow-auto ${row ? "flex-row h-[120px]": "flex-col w-[120px] h-[400px]"}`}>
           {images.map((url) => (
             <div key={url} className={`flex flex-shrink-0 relative w-[100px] h-[100px] rounded-md`}>
               <div className="z-10 absolute top-2 right-2">
