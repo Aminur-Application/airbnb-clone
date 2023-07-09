@@ -37,7 +37,7 @@ const ImageUpload: React.FC<ImageUploadProps> = ({
         onUpload={handleUpload}
         uploadPreset="gsfzfhds"
         options={{
-          maxFiles: 4,
+          maxFiles: 10,
           multiple: true,
         }}
       >
