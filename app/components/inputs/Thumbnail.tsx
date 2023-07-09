@@ -23,12 +23,16 @@ const Thumbnail: React.FC<ThumbnailProps> = ({images, row, onRemoval, onClick, v
     if (!value && images.length > 0){
       onClick(images[0])
     }
+
+    if(!images.includes(value)){
+      onClick(images[0])
+    }
   }, [value, images])
   
   return (
-    <div className={`flex gap-4 ${row ? "flex-row" : "flex-col"}`}>
+    <div className={`flex w-auto flex-nowrap gap-2 ${row ? "flex-row" : "flex-col"} overflow-y-auto`}>
       {images.map((url) => (
-        <div key={url} className={`relative w-[100px] h-[100px] rounded-md overflow-hidden `}>
+        <div key={url} className={`flex flex-shrink-0 relative w-[100px] h-[100px] rounded-md`}>
           <div className="z-10 absolute top-2 right-2">
             <button type="button" onClick={() => handleRemoval(url)} className='p-2 bg-rose-500 hover:opacity-100 opacity-70 rounded-full text-white'>
               <BiTrash size={18} />
