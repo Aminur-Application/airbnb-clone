@@ -16,6 +16,7 @@ import Input from '../inputs/Input'
 import axios from 'axios'
 import toast from 'react-hot-toast'
 import { useRouter } from 'next/navigation'
+import Thumbnail from '../inputs/Thumbnail'
 
 enum STEPS {
   CATEGORY = 0,
@@ -57,7 +58,8 @@ const RentModal = () => {
       guestCount: 1,
       roomCount: 1,
       bathroomCount: 1,
-      imageSrc: '',
+      imageSrc: [],
+      thumbnail: '',
       price: 1,
       title: '',
       description: ''
@@ -69,7 +71,8 @@ const RentModal = () => {
   const guestCount = watch('guestCount');
   const roomCount = watch('roomCount');
   const bathroomCount = watch('bathroomCount');
-  const imageSrc = watch('imageSrc');
+  const imageSrc = watch('imageSrc', []);
+  const thumbnail = watch('Thumbnail');
 
 
   const Map = useMemo(() => dynamic(() => import('../Map'), {ssr: false }), [location])
@@ -139,9 +142,13 @@ const RentModal = () => {
       <div className='flex flex-col gap-8'>
         <Heading title='Add a photo of your place?' subtitle='Show guests what your place looks like!'/>
         <ImageUpload value={imageSrc} onChange={(value) => setCustomValue('imageSrc', value)}/>
+        <Thumbnail images={imageSrc} value={thumbnail} row onRemoval={(value) => setCustomValue('imageSrc', value)} onClick={(value) => setCustomValue('Thumbnail', value)}/>
       </div>
     )
-  }
+  } 
+
+  console.log("imagesrc: ", imageSrc)
+  console.log("location: ", location)
 
   if (step === STEPS.DESCRIPTION){
     bodyContent = (
