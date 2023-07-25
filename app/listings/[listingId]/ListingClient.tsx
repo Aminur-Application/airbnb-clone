@@ -13,6 +13,7 @@ import axios from 'axios';
 import { toast } from 'react-hot-toast';
 import ListingReservation from '@/app/components/listings/ListingReservation';
 import { Range } from 'react-date-range';
+import { ListingImage } from '@prisma/client';
 
 const initialDateRange = {
   startDate: new Date(),
@@ -23,6 +24,7 @@ interface ListingClientProps {
   reservations?: SafeReservation[];
   listing: SafeListing & {
     user: SafeUser
+    listingImages: ListingImage[]
   }
   currentUser?: SafeUser | null;
 }
@@ -101,7 +103,8 @@ const ListingClient: React.FC<ListingClientProps> = ({
         <div className='flex flex-col gap-6'>
           <ListingHead
             title={listing.title}
-            imageSrc={listing.imageSrc}
+            images={listing.listingImages.map((image) => image.imageSrc)}
+            thumbnail={listing.thumbnail}
             locationValue={listing.locationValue}
             id={listing.id}
             currentUser={currentUser}
