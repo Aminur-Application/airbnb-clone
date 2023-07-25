@@ -14,6 +14,7 @@ interface ListingHeadProps {
   images: string[];
   id: string;
   currentUser?: SafeUser | null
+  thumbnail: string
 }
 
 const ListingHead: React.FC<ListingHeadProps> = ({
@@ -21,10 +22,11 @@ const ListingHead: React.FC<ListingHeadProps> = ({
   locationValue,
   images,
   id,
-  currentUser
+  currentUser,
+  thumbnail
 }) => {
   const { getByValue } = useCountries();
-  const [thumbnail, setThumbnail] = useState('')
+  const [selectedThumbnail, setSelectedThumbnail] = useState(thumbnail)
 
   const location = getByValue(locationValue);
 
@@ -41,7 +43,7 @@ const ListingHead: React.FC<ListingHeadProps> = ({
           relative
         "
       >
-        <Thumbnail height="60vh" images={images} value={thumbnail} bigPicture onClick={(value) => setThumbnail(value)} />
+        <Thumbnail height="60vh" images={images} value={selectedThumbnail} bigPicture onClick={(value) => setSelectedThumbnail(value)} />
         <div
           className="
             absolute
