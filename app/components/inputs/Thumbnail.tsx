@@ -2,7 +2,7 @@
 
 import React, { useCallback, useEffect } from 'react'
 import { BiTrash } from 'react-icons/bi';
-import Image from 'next/image'
+import Image, { StaticImageData } from 'next/image'
 
 interface ThumbnailProps {
   images: string[],
@@ -56,7 +56,7 @@ const Thumbnail: React.FC<ThumbnailProps> = ({ images, row, onRemoval, onClick, 
             </div>
           ))}
         </div>
-        {bigPicture && (
+        {bigPicture && value && (
           <div className={`flex h-[${height}] flex-auto relative rounded-md`}>
             <Image
               fill
