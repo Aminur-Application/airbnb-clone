@@ -48,7 +48,7 @@ export async function POST(
 
    await Promise.all(
     imageSrc.map((image: string) =>
-      prisma.image.create({
+      prisma.listingImage.create({
         data: {
           imageSrc: image,
           listing: { connect: { id: listing.id } },

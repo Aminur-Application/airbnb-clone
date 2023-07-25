@@ -61,7 +61,7 @@ model Listing {
 
   user User @relation(fields: [userId], references: [id], onDelete: Cascade)
   reservations Reservation[]
-  images Image[]
+  listingImages ListingImage[]
 }
 
 model Reservation {
@@ -77,7 +77,7 @@ model Reservation {
   listing Listing @relation(fields: [listingId], references: [id], onDelete: Cascade)
 }
 
-model Image {
+model ListingImage {
   id String @id @default(auto()) @map("_id") @db.ObjectId
   listingId String @db.ObjectId
   imageSrc String

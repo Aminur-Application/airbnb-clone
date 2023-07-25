@@ -16,7 +16,7 @@ export default async function getListingById(
       },
       include: {
         user: true,
-        images: true,
+        listingImages: true,
       }
     });
 
@@ -34,7 +34,7 @@ export default async function getListingById(
         emailVerified: 
           listing.user.emailVerified?.toString() || null,
       },
-      images: listing.images
+      listingImage: listing.listingImages
     };
   } catch (error: any) {
     throw new Error(error);
