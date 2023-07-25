@@ -15,7 +15,8 @@ export default async function getListingById(
         id: listingId,
       },
       include: {
-        user: true
+        user: true,
+        images: true,
       }
     });
 

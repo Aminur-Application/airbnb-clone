@@ -70,6 +70,9 @@ export default async function getListings(params: IlistingsParams) {
       where: query,
       orderBy: {
         createdAt: 'desc'
+      },
+      include: {
+        images: true,
       }
     })
     
