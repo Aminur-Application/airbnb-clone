@@ -72,7 +72,7 @@ const RentModal = () => {
   const roomCount = watch('roomCount');
   const bathroomCount = watch('bathroomCount');
   const imageSrc = watch('imageSrc', []);
-  const thumbnail = watch('Thumbnail');
+  const thumbnail = watch('thumbnail');
 
 
   const Map = useMemo(() => dynamic(() => import('../Map'), { ssr: false }), [location])
@@ -145,7 +145,7 @@ const RentModal = () => {
         {imageSrc.length > 0 && (
           <>
             <Heading title='Now select a photo' subtitle='Show guests an awesome first picture!' />
-            <Thumbnail images={imageSrc} value={thumbnail} row bigPicture onRemoval={(value) => setCustomValue('imageSrc', value)} onClick={(value) => setCustomValue('Thumbnail', value)} />
+            <Thumbnail images={imageSrc} value={thumbnail} row bigPicture onRemoval={(value) => setCustomValue('imageSrc', value)} onClick={(value) => setCustomValue('thumbnail', value)} />
           </>
         )}
       </div>
