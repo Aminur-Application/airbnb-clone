@@ -22,6 +22,7 @@ export async function POST(
     guestCount,
     location,
     price,
+    thumbnail
    } = body;
 
    Object.keys(body).forEach((value: any) => {
@@ -34,16 +35,27 @@ export async function POST(
     data: {
       title,
       description,
-      imageSrc,
       category,
       roomCount,
       bathroomCount,
       guestCount,
+      thumbnail,
       locationValue: location.value,
       price: parseInt(price, 10),
       userId: currentUser.id
     }
    });
+
+   await Promise.all(
+    imageSrc.map((image: string) =>
+      prisma.image.create({
+        data: {
+          imageSrc: image,
+          listing: { connect: { id: listing.id } },
+        },
+      })
+    )
+  );
 
    return NextResponse.json(listing)
 }
