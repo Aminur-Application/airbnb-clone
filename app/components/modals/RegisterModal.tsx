@@ -36,9 +36,6 @@ const RegisterModal = () => {
 
   const onSubmit: SubmitHandler<FieldValues> = (data) => {
     setIsLoading(true);
-
-    console.log("does this work!")
-
     axios.post('/api/register', data)
       .then(() => {
         toast.error('Success')

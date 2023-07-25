@@ -28,9 +28,6 @@ const ImageUpload: React.FC<ImageUploadProps> = ({
     onChange(updatedValue);
   }, [onChange, value]);
 
-  console.log(value)
-
-
   return (
     <>
       <CldUploadWidget

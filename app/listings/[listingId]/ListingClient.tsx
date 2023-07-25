@@ -35,8 +35,6 @@ const ListingClient: React.FC<ListingClientProps> = ({
   const loginModal = useLoginModal()
   const router = useRouter()
 
-  console.log("LISTINGS:::", listing)
-
   const disabledDates = useMemo(() => {
     let dates: Date[] = [];
 

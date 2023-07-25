@@ -152,9 +152,6 @@ const RentModal = () => {
     )
   }
 
-  console.log("imagesrc: ", imageSrc)
-  console.log("location: ", location)
-
   if (step === STEPS.DESCRIPTION) {
     bodyContent = (
       <div className='flex flex-col gap-8'>
