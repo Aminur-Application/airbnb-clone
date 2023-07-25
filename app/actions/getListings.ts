@@ -83,5 +83,3 @@ export default async function getListings(params: IlistingsParams) {
     throw new Error(error);
   }
 }
-
-export const dynamic = 'force-dynamic'
