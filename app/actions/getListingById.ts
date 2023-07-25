@@ -33,7 +33,8 @@ export default async function getListingById(
         updatedAt: listing.user.updatedAt.toString(),
         emailVerified: 
           listing.user.emailVerified?.toString() || null,
-      }
+      },
+      images: listing.images
     };
   } catch (error: any) {
     throw new Error(error);
