@@ -1,17 +1,17 @@
 'use client';
 
-import Image from "next/image";
-
 import useCountries from "@/app/hooks/useCountries";
 import { SafeUser } from "@/app/types";
 
 import Heading from "../Heading";
 import HeartButton from "../HeartButton";
+import { useState } from "react";
+import Thumbnail from "../inputs/Thumbnail";
 
 interface ListingHeadProps {
   title: string;
   locationValue: string;
-  imageSrc: string;
+  images: string[];
   id: string;
   currentUser?: SafeUser | null
 }
@@ -19,11 +19,12 @@ interface ListingHeadProps {
 const ListingHead: React.FC<ListingHeadProps> = ({
   title,
   locationValue,
-  imageSrc,
+  images,
   id,
   currentUser
 }) => {
   const { getByValue } = useCountries();
+  const [thumbnail, setThumbnail] = useState('')
 
   const location = getByValue(locationValue);
 
@@ -36,17 +37,11 @@ const ListingHead: React.FC<ListingHeadProps> = ({
       <div className="
           w-full
           h-[60vh]
-          overflow-hidden 
           rounded-xl
           relative
         "
       >
-        <Image
-          src={imageSrc}
-          fill
-          className="object-cover w-full"
-          alt="Image"
-        />
+        <Thumbnail height="60vh" images={images} value={thumbnail} bigPicture onClick={(value) => setThumbnail(value)} />
         <div
           className="
             absolute

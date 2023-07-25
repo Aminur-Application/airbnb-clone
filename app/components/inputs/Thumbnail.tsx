@@ -7,17 +7,20 @@ import Image from 'next/image'
 interface ThumbnailProps {
   images: string[],
   row?: boolean,
-  onRemoval: (value: string[]) => void;
+  onRemoval?: (value: string[]) => void;
   onClick: (value: string) => void;
   value: string;
   bigPicture?: boolean
+  height: string
 }
 
-const Thumbnail: React.FC<ThumbnailProps> = ({ images, row, onRemoval, onClick, value, bigPicture }) => {
+const Thumbnail: React.FC<ThumbnailProps> = ({ images, row, onRemoval, onClick, value, bigPicture, height }) => {
 
   const handleRemoval = (url: string) => {
-    const updatedValue = images.filter((imageUrl) => imageUrl !== url);
-    onRemoval(updatedValue);
+    if (onRemoval) {
+      const updatedValue = images.filter((imageUrl) => imageUrl !== url);
+      onRemoval(updatedValue);
+    }
   }
 
   useEffect(() => {
@@ -33,13 +36,15 @@ const Thumbnail: React.FC<ThumbnailProps> = ({ images, row, onRemoval, onClick, 
   return (
     <>
       <div className={`flex gap-2  ${row ? "flex-col" : "flex-row"}`}>
-        <div className={`flex flex-nowrap overflow-auto ${row ? "flex-row h-[120px]": "flex-col w-[120px] h-[400px]"}`}>
+        <div className={`flex flex-nowrap overflow-auto ${row ? `flex-row h-[120px]` : `flex-col w-[120px] h-[${height}]`}`}>
           {images.map((url) => (
             <div key={url} className={`flex flex-shrink-0 relative w-[100px] h-[100px] rounded-md`}>
               <div className="z-10 absolute top-2 right-2">
-                <button type="button" onClick={() => handleRemoval(url)} className='p-2 bg-rose-500 hover:opacity-100 opacity-70 rounded-full text-white'>
-                  <BiTrash size={18} />
-                </button>
+                {onRemoval && (
+                  <button type="button" onClick={() => handleRemoval(url)} className='p-2 bg-rose-500 hover:opacity-100 opacity-70 rounded-full text-white'>
+                    <BiTrash size={18} />
+                  </button>
+                )}
               </div>
               <Image
                 fill
@@ -52,7 +57,7 @@ const Thumbnail: React.FC<ThumbnailProps> = ({ images, row, onRemoval, onClick, 
           ))}
         </div>
         {bigPicture && (
-          <div className={`flex h-[400px] flex-auto relative rounded-md`}>
+          <div className={`flex h-[${height}] flex-auto relative rounded-md`}>
             <Image
               fill
               className="object-cover border-2 hover:opacity-100"

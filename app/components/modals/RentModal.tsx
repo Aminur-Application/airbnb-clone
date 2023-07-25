@@ -145,7 +145,7 @@ const RentModal = () => {
         {imageSrc.length > 0 && (
           <>
             <Heading title='Now select a photo' subtitle='Show guests an awesome first picture!' />
-            <Thumbnail images={imageSrc} value={thumbnail} row bigPicture onRemoval={(value) => setCustomValue('imageSrc', value)} onClick={(value) => setCustomValue('thumbnail', value)} />
+            <Thumbnail height="400px" images={imageSrc} value={thumbnail} row bigPicture onRemoval={(value) => setCustomValue('imageSrc', value)} onClick={(value) => setCustomValue('thumbnail', value)} />
           </>
         )}
       </div>
